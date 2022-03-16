@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Tile
 {
-    public Tile(int Aridity)
+    public Tile(int fertility)
     {
-        this.Aridity = Aridity;
+        this.Fertility = fertility;
     }
-    public int Aridity;
+    public int Fertility { get; protected set; } // 100 = fertile, 0 = desert
 }

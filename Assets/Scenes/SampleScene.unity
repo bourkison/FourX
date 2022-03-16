@@ -153,6 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WorldContainer: {fileID: 199335068}
+  mats:
+  - {fileID: 2100000, guid: 922b18592fce04cccb7942af662a843c, type: 2}
+  - {fileID: 2100000, guid: 03daf29a44ffb44fc861aa857d63b0e7, type: 2}
 --- !u!4 &53955994
 Transform:
   m_ObjectHideFlags: 0
