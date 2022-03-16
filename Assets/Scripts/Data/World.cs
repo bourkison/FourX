@@ -10,12 +10,13 @@ public class World
         this.height = height;
         this.width = width;
 
-        for (int i = 0; i < height; i++)
+        for (int x = 0; x < width; x++)
         {
-            for (int j = 0; j < width; j++)
+            for (int y = 0; y < height; y++)
             {
                 int fertility = Mathf.FloorToInt(UnityEngine.Random.Range(0, 100));
-                tiles.Add(new Tile(fertility));
+                Vector3 pos = new Vector3(x, y, 0);
+                tiles.Add(new Tile(fertility, pos));
             }
         }
     }
@@ -27,6 +28,11 @@ public class World
     public Tile[] GetTiles()
     {
         return tiles.ToArray();
+    }
+
+    public Tile GetTileAtIndex(int index)
+    {
+        return tiles[index];
     }
 
 }
