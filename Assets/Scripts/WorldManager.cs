@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class WorldManager : MonoBehaviour
 {
-    public int Seed = 0;
+    public int Seed;
     public int WorldHeight = 5;
     public int WorldWidth = 10;
     World world;
+    Player player;
     public GameObject WorldContainer;
+    public GameObject InitColonyPrefab;
     public List<Tile> Tiles = new List<Tile>();
     public Material[] mats;
     public LayerMask ClickableTilesLayerMask;
@@ -16,8 +18,13 @@ public class WorldManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UnityEngine.Random.InitState(Seed);
+        if (Seed != 0)
+        {
+            UnityEngine.Random.InitState(Seed);
+        }
+
         GenerateWorld();
+        GeneratePlayer();
     }
 
     void GenerateWorld()
@@ -40,6 +47,18 @@ public class WorldManager : MonoBehaviour
             ClickableTile ct = go.AddComponent<ClickableTile>();
             ct.SetTile(tile);
         }
+    }
+
+    void GeneratePlayer()
+    {
+        int colX = Mathf.FloorToInt(UnityEngine.Random.Range(0, WorldWidth));
+        int colY = Mathf.FloorToInt(UnityEngine.Random.Range(0, WorldHeight));
+        Vector3 colPos = new Vector3(colX, colY, 0);
+
+        player = new Player(colPos);
+
+        Instantiate(InitColonyPrefab, colPos + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+
     }
 
     // Update is called once per frame
