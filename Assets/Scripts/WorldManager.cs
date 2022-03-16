@@ -9,8 +9,11 @@ public class WorldManager : MonoBehaviour
     public int WorldWidth = 10;
     World world;
     Player player;
-    public GameObject WorldContainer;
+
+    public GameObject TileContainer;
+    public GameObject PlayerContainer;
     public GameObject InitColonyPrefab;
+    
     public List<Tile> Tiles = new List<Tile>();
     public Material[] mats;
     public LayerMask ClickableTilesLayerMask;
@@ -40,7 +43,7 @@ public class WorldManager : MonoBehaviour
 
             GameObject go = BuildTile(tile.Fertility);
             go.name = x.ToString() + "|" + y.ToString();
-            go.transform.SetParent(WorldContainer.transform);
+            go.transform.SetParent(TileContainer.transform);
             Vector3 pos = new Vector3(x, y, 0);
             go.transform.position = pos;
             
@@ -57,7 +60,8 @@ public class WorldManager : MonoBehaviour
 
         player = new Player(colPos);
 
-        Instantiate(InitColonyPrefab, colPos + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+        GameObject go = Instantiate(InitColonyPrefab, colPos + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+        go.transform.SetParent(TileContainer.transform);
 
     }
 
